@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  s3_key: MyString
+  is_vertical: false
+  uploaded_at: 2009-05-05 17:10:03
+
+two:
+  s3_key: MyString
+  is_vertical: false
+  uploaded_at: 2009-05-05 17:10:03

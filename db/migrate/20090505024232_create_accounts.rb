@@ -8,7 +8,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.string :cc_code, :null => false, :limit => 64
       t.integer :points, :null => false, :default => 0
       t.decimal :balance, :null => false, :default => 0, :precision => 4, :scale => 2
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505024232) do
+ActiveRecord::Schema.define(:version => 20090505211305) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id",                                                                 :null => false
@@ -19,8 +19,48 @@ ActiveRecord::Schema.define(:version => 20090505024232) do
     t.string   "cc_code",    :limit => 64,                                                :null => false
     t.integer  "points",                                                 :default => 0,   :null => false
     t.decimal  "balance",                  :precision => 4, :scale => 2, :default => 0.0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string "name", :limit => 32, :null => false
+    t.string "code", :limit => 8,  :null => false
+  end
+
+  create_table "plans", :force => true do |t|
+    t.string "name",          :limit => 32,                             :null => false
+    t.string "from_language", :limit => 16, :default => "Any Language", :null => false
+    t.string "to_language",   :limit => 16, :default => "Any Language", :null => false
+    t.string "pricing",       :limit => 32,                             :null => false
+  end
+
+  create_table "registrations", :force => true do |t|
+    t.integer  "user_id",                  :null => false
+    t.string   "invite_key", :limit => 64, :null => false
+    t.date     "expiration",               :null => false
+    t.datetime "created_at",               :null => false
+  end
+
+  create_table "translations", :force => true do |t|
+    t.integer  "account_id",        :null => false
+    t.integer  "start_language_id", :null => false
+    t.integer  "end_language_id",   :null => false
+    t.integer  "upload_id"
+    t.string   "start_text",        :null => false
+    t.string   "end_text"
+    t.datetime "translated_at",     :null => false
+  end
+
+  create_table "translators", :force => true do |t|
+    t.integer "account_id",  :null => false
+    t.integer "language_id", :null => false
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "s3_key",      :limit => 256,                    :null => false
+    t.boolean  "is_vertical",                :default => false, :null => false
+    t.datetime "uploaded_at",                                   :null => false
   end
 
   create_table "users", :force => true do |t|
