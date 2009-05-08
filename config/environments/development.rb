@@ -14,4 +14,18 @@ config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true
+
+# Set delivery method to :smtp, :sendmail or :test
+config.action_mailer.delivery_method = :smtp
+
+# These options are only needed if you choose smtp delivery
+ActionMailer::Base.smtp_settings = {
+  :enable_starttls_auto => true,
+  :address => 'smtp.gmail.com',
+  :port => 587, 
+  :domain => 'localhost.localdomain',
+  :authentication => :plain,
+  :user_name => 'amf.proj',
+  :password => 'amfproject01'
+}

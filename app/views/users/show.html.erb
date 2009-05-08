@@ -2,42 +2,21 @@
   <b>Email:</b>
   <%=h @user.email %>
 </p>
-
-<p>
-  <b>First name:</b>
-  <%=h @user.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%=h @user.last_name %>
-</p>
-
-<p>
-  <b>Hashed password:</b>
-  <%=h @user.hashed_password %>
-</p>
-
-<p>
-  <b>Salt:</b>
-  <%=h @user.salt %>
-</p>
-
-<p>
-  <b>Active:</b>
-  <%=h @user.active %>
-</p>
-
+ 
 <p>
   <b>Last login at:</b>
   <%=h @user.last_login_at %>
 </p>
-
+  
 <p>
-  <b>Created at:</b>
-  <%=h @user.created_at %>
+  <b>Last login ip:</b>
+  <%=h @user.last_login_ip %>
 </p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+ 
+<p>
+  <b>Current login ip:</b>
+  <%=h @user.current_login_ip %>
+</p>
+ 
+ 
+<%= link_to 'Edit', edit_account_path %>

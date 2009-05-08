@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090505211305) do
+ActiveRecord::Schema.define(:version => 20090508194853) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id",                                                                 :null => false
@@ -35,13 +35,6 @@ ActiveRecord::Schema.define(:version => 20090505211305) do
     t.string "pricing",       :limit => 32,                             :null => false
   end
 
-  create_table "registrations", :force => true do |t|
-    t.integer  "user_id",                  :null => false
-    t.string   "invite_key", :limit => 64, :null => false
-    t.date     "expiration",               :null => false
-    t.datetime "created_at",               :null => false
-  end
-
   create_table "translations", :force => true do |t|
     t.integer  "account_id",        :null => false
     t.integer  "start_language_id", :null => false
@@ -64,14 +57,19 @@ ActiveRecord::Schema.define(:version => 20090505211305) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",           :limit => 16,                    :null => false
-    t.string   "first_name",      :limit => 16,                    :null => false
-    t.string   "last_name",       :limit => 16,                    :null => false
-    t.string   "hashed_password", :limit => 64,                    :null => false
-    t.string   "salt",            :limit => 8,                     :null => false
-    t.boolean  "active",                        :default => false, :null => false
-    t.datetime "last_login_at",                                    :null => false
-    t.datetime "created_at",                                       :null => false
+    t.string   "email",                                :null => false
+    t.string   "crypted_password",                     :null => false
+    t.string   "password_salt",                        :null => false
+    t.string   "persistence_token",                    :null => false
+    t.boolean  "active",            :default => false, :null => false
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "last_login_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "perishable_token",  :default => "",    :null => false
   end
+
+  add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
 
 end
