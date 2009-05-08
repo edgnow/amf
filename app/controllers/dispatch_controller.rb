@@ -7,4 +7,16 @@ class DispatchController < ApplicationController
     end
   end
   
+  def pricing
+    @plans = Plan.all
+  end
+  
+  def guides
+    
+  end
+  
+  def feedback
+    
+  end
+  
 end
