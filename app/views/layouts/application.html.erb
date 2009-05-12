@@ -11,27 +11,48 @@
 	</head>
 
 	<body>
-		<div id="top"> 
-			<span style="float: right; text-align: right;">
-				<% if !current_user %>
-				  <%= link_to "Home", :controller => "dispatch", :action => "home" %> |
-				  <%= link_to "Pricing and Registration", :controller => "dispatch", :action => "pricing" %> |
-				  <%= link_to "Guides", :controller => "dispatch", :action => "guides" %> |
-				  <%= link_to "Feedback",:controller => "dispatch", :action => "feedback" %> |
-				  <%= link_to "Log In", new_user_session_path %>
-				<% else %>
-				  <%= link_to "My Account", account_path %> |
-				  <%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
-				<% end %>
-			</span>
-			<h1>BabelCell</h1>
-		</div>
+		<div id="main">
+			<div id="header">
+				<div class="site">
+					<div class="logo">
+						<h1><%= link_to "BabelCell", :controller => "dispatch", :action => "home" %></h1>
+					</div>
+				
+					<div class="actions">
+						<% if !current_user %>
+							<%= link_to "Home", :controller => "dispatch", :action => "home" %>
+							<b><%= link_to "Pricing and Registration", :controller => "dispatch", :action => "pricing" %></b>
+							<%= link_to "Guides", :controller => "dispatch", :action => "guides" %>
+							<%= link_to "Feedback",:controller => "dispatch", :action => "feedback" %>
+							<%= link_to "Log In", new_user_session_path %>
+						<% else %>
+							<%= link_to "My Account", account_path %>
+							<%= link_to "Guides", :controller => "dispatch", :action => "guides" %>
+							<%= link_to "Feedback",:controller => "dispatch", :action => "feedback" %>
+							<%= link_to "Logout", user_session_path, :method => :delete, :confirm => "Are you sure you want to logout?" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
 	
-		<p style="color: green"><%= flash[:notice] %></p>
-	
-		<div id="content">
-			<%= yield(:content) or yield %>
+			<div id="page">
+				<div class="site">
+					<p style="color: green"><%= flash[:notice] %></p>
+					<%= yield(:content) or yield %>
+				</div>
+			</div>
 		</div>
+
+		<div id="footer">
+			<div class="site">
+				<a href="">About us</a>
+				<a href="">Careers</a>
+				<a href="">Legal</a>
+				<a href="">Contact Us</a>
+				<div class="copyright-notice"> Copyright © 2009 BabelCell. All designs and products Copyright by owner. </div>
+			</div>			
+		</div>
+		
 	</body>
 	
 </html>
