@@ -1,1 +1,7 @@
-<tr><td><%= plan.name %></td><td><%= plan.from_language %></td><td><%= plan.to_language %></td><td><%= plan.pricing %></td></tr>
+<tr>
+	<td><%= plan.name %></td>
+	<td><%= plan.from_language %></td>
+	<td><%= plan.to_language %></td>
+	<td><%= plan.pricing %></td>
+	<td><%= link_to "Sign Up", :controller => "users", :action => "new", :id => plan.id%></td>
+</tr>

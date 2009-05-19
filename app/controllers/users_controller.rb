@@ -4,10 +4,17 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @user.plan = Plan.find(params[:id])    
   end
   
   def create
     @user = User.new(params[:user])
+    @user.plan = Plan.find(params[:plan_id])
+    
+    if @user.credit_card
+      @user.credit_card.encrypt
+    end
+    
     if @user.save
       @user.deliver_email_confirmation!
       flash[:notice] = "Account registered!"
