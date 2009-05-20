@@ -2,6 +2,17 @@
 	<td><%= plan.name %></td>
 	<td><%= plan.from_language %></td>
 	<td><%= plan.to_language %></td>
-	<td><%= plan.pricing %></td>
-	<td><%= link_to "Sign Up", :controller => "users", :action => "new", :id => plan.id%></td>
+	<% if plan.id == 1 %>
+		<td>$<%= plan.price.to_s %></td>
+	<% else %>
+		<td>$<%= plan.price.to_s %>/<%= plan.unit %></td>
+	<% end %>
+	<td><%= plan.notes %></td>
+
+	<% if plan.id == 1 %>
+		<td><%= link_to "Sign Up", :controller => "users", :action => "new", :id => plan.id%> (Optional)</td>
+	<% else %>
+		<td><%= link_to "Sign Up", :controller => "users", :action => "new", :id => plan.id%></td>
+	<% end %>
+	
 </tr>

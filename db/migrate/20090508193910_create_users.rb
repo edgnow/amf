@@ -8,9 +8,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :persistence_token, :null => false
       t.boolean :active, :null => false, :default => 0
       
-      t.references :plan, :null => false
       t.integer :points, :null => false, :default => 0
-      t.decimal :balance, :null => false, :default => 0, :precision => 4, :scale => 2
+      t.integer :days, :null => false, :default => 0
+      t.integer :translations, :null => false, :default => 0
       
       t.string :current_login_ip
       t.string :last_login_ip

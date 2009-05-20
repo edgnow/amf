@@ -1,0 +1,7 @@
+<% if plan.id > 1 %>
+	<div id="div_plan">
+		<%= hidden_field_tag 'plan_id', plan.id %><br />
+		<%= label_tag 'plan' %>: <%= plan.name %><br />
+		Number of <%= plan.unit %>s: <%= select_tag 'units', @options %><br />
+	</div>
+<% end %>

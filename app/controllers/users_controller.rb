@@ -4,21 +4,26 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
-    @user.plan = Plan.find(params[:id])    
+    @plan = Plan.find(params[:id])
+    @options = ''
+    for i in (@plan.min .. @plan.max)
+      @options = @options + '<option>' + i.to_s + '</option>'
+    end
   end
   
   def create
     @user = User.new(params[:user])
-    @user.plan = Plan.find(params[:plan_id])
     
-    if @user.credit_card
-      @user.credit_card.encrypt
+    if params[:plan_id]
+      @plan = Plan.find(params[:plan_id])
+      @user[@plan.user_field] = params[:units].to_i * @plan.multiplier
     end
     
     if @user.save
       @user.deliver_email_confirmation!
-      flash[:notice] = "Account registered!"
-      redirect_back_or_default account_url
+      flash[:notice] = "An activation link has been sent to your email account.  In order to complete your registration, 
+      please open the email and click on the activation link. Thank you for registering with BabelCell!"
+      redirect_back_or_default :controller => 'dispatch', :action => 'home'
     else
       render :action => :new
     end

@@ -1,4 +1,4 @@
-<div id="div_user">
+<div id='div_user'>
 	<%= form.label :email %><br />
 	<%= form.text_field :email %><br />
 	<%= form.label :password, form.object.new_record? ? nil : "Change password" %><br />
