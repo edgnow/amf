@@ -9,11 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090508194853) do
+ActiveRecord::Schema.define(:version => 20090521221831) do
 
   create_table "languages", :force => true do |t|
     t.string "name", :limit => 32, :null => false
     t.string "code", :limit => 8,  :null => false
+  end
+
+  create_table "passes", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "points",       :default => 0, :null => false
+    t.integer  "translations", :default => 0, :null => false
+    t.integer  "days",         :default => 0, :null => false
+    t.integer  "weeks",        :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "plans", :force => true do |t|
@@ -22,11 +32,9 @@ ActiveRecord::Schema.define(:version => 20090508194853) do
     t.string  "to_language",   :limit => 16,                               :default => "Any Language", :null => false
     t.decimal "price",                       :precision => 3, :scale => 2,                             :null => false
     t.string  "unit",          :limit => 16,                                                           :null => false
-    t.string  "user_field",    :limit => 16,                                                           :null => false
     t.string  "notes",                                                                                 :null => false
     t.integer "min",                                                                                   :null => false
     t.integer "max",                                                                                   :null => false
-    t.integer "multiplier",                                                :default => 1,              :null => false
   end
 
   create_table "translations", :force => true do |t|
@@ -47,9 +55,6 @@ ActiveRecord::Schema.define(:version => 20090508194853) do
     t.string   "password_salt",                        :null => false
     t.string   "persistence_token",                    :null => false
     t.boolean  "active",            :default => false, :null => false
-    t.integer  "points",            :default => 0,     :null => false
-    t.integer  "days",              :default => 0,     :null => false
-    t.integer  "translations",      :default => 0,     :null => false
     t.string   "current_login_ip"
     t.string   "last_login_ip"
     t.datetime "last_login_at"

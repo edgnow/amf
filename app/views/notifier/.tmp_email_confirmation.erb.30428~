@@ -1,7 +1,0 @@
-Hello,
-
-<%= @confirm_users_url %>
-
-Sincerely,
-
-BabelCell Support Team!

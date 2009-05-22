@@ -7,11 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_salt, :null => false
       t.string :persistence_token, :null => false
       t.boolean :active, :null => false, :default => 0
-      
-      t.integer :points, :null => false, :default => 0
-      t.integer :days, :null => false, :default => 0
-      t.integer :translations, :null => false, :default => 0
-      
+
       t.string :current_login_ip
       t.string :last_login_ip
       t.datetime :last_login_at

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_authentic
+  has_one :pass, :dependent => :destroy
   has_many :translations, :dependent => :destroy
 
   def deliver_password_reset_instructions!  
